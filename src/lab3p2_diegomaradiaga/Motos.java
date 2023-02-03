@@ -2,13 +2,13 @@ package lab3p2_diegomaradiaga;
 
 public class Motos extends Vehiculos{
     private String desplazamiento;
-    private String tipoM;
+    private boolean tipoM;
 
     public Motos() {
         super();
     }
 
-    public Motos(String desplazamiento, String tipoM, String color, String marca, String modelo, int fabricacion, int precio, int cantLL) {
+    public Motos(String desplazamiento, boolean tipoM, String color, String marca, String modelo, int fabricacion, int precio, int cantLL) {
         super(color, marca, modelo, fabricacion, precio, cantLL);
         this.desplazamiento = desplazamiento;
         this.tipoM = tipoM;
@@ -22,11 +22,11 @@ public class Motos extends Vehiculos{
         this.desplazamiento = desplazamiento;
     }
 
-    public String getTipoM() {
+    public boolean getTipoM() {
         return tipoM;
     }
 
-    public void setTipoM(String tipoM) {
+    public void setTipoM(boolean tipoM) {
         this.tipoM = tipoM;
     }
 

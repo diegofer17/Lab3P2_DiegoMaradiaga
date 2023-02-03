@@ -84,10 +84,65 @@ public class Lab3P2_DiegoMaradiaga {
                             + "\n"
                             + "Ingrese una opcion: ");
                     int opcionC = leer.nextInt();
-                    
-                    switch (opcionC){
+
+                    switch (opcionC) {
                         case 1:
-                            newVehiculos();
+                            System.out.println("Creacion del vehiculo\n"
+                                    + "\n");
+                            System.out.print("Ingrese el color del vehiculo: ");
+                            String colorV = leer.next();
+                            System.out.print("Ingrese la marca del vehiculo: ");
+                            String marcaV = leer.next();
+                            System.out.print("Ingrese el modelo del vehiculo: ");
+                            String modeloV = leer.next();
+                            System.out.println("Ingrese el anio del vehiculo: ");
+                            int anioV = leer.nextInt();
+                            System.out.println("Ingrese el precio del vehiculo: ");
+                            int precioV = leer.nextInt();
+                            int cantll = 0;
+                            do {
+                                System.out.println("Ingrese la cantidad de llantas (2 o 4): ");
+                                cantll = leer.nextInt();
+                            } while (cantll != 2 || cantll != 4);
+
+                            switch (cantll) {
+                                case 2:
+                                    int opcionl2 = 0;
+                                    do {
+                                        System.out.println("Elija (1 = Moto/ 2 = Bici)? ");
+                                        opcionl2 = leer.nextInt();
+                                    } while (opcionl2 != 1 || opcionl2 != 2);
+                                    switch (opcionl2) {
+                                        case 1:
+                                            newMotos(colorV, marcaV, modeloV, marcaV, precioV, cantll);
+                                            break;
+                                        case 2:
+                                            newBicis(colorV, marcaV, modeloV, marcaV, precioV, cantll);
+                                            break;
+                                    }//Fin switch
+                                    break;
+                                case 4:
+                                    int opcionl4 = 0;
+                                    do {
+                                        System.out.println("Elija (1 = Carro/ 2 = Camion/ 3= Bus)? ");
+                                        opcionl4 = leer.nextInt();
+                                    } while (opcionl4 != 1 || opcionl4 != 2 || opcionl4 != 3);
+                                    switch (opcionl4) {
+                                        case 1:
+                                            newCarros(colorV, marcaV, modeloV, marcaV, precioV, cantll);
+                                            break;
+                                        case 2:
+                                            newCamiones(colorV, marcaV, modeloV, marcaV, precioV, cantll);
+                                            break;
+                                        case 3:
+                                            newBuses(colorV, marcaV, modeloV, marcaV, precioV, cantll);
+                                            break;
+                                    }//Fin switch
+                                    break;
+                                default:
+
+                            }//Fin switch
+                            
                             break;
                         case 2:
                             break;
@@ -140,84 +195,91 @@ public class Lab3P2_DiegoMaradiaga {
         return retorno;
     }
     
-    static Vehiculos newVehiculos(){
-        Vehiculos retorno;
-        System.out.println("Creacion del vehiculo\n"
-                + "\n");
-        System.out.print("Ingrese el color del vehiculo: ");
-        String colorV = leer.next();
-        System.out.print("Ingrese la marca del vehiculo: ");
-        String marcaV = leer.next();
-        System.out.print("Ingrese el modelo del vehiculo: ");
-        String modeloV = leer.next();
-        System.out.println("Ingrese el ano del vehiculo: ");
-        int anioV = leer.nextInt();
-        System.out.println("Ingrese el precio del vehiculo: ");
-        int precioV = leer.nextInt();
-        int cantll=0;
-        do{
-        System.out.println("Ingrese la cantidad de llantas (2 o 4): ");
-        cantll = leer.nextInt();
-        }while( cantll !=2 || cantll !=4);
-        
-        switch (cantll) {
-            case 2:
-                int opcionl2 = 0;
-                do{
-                System.out.println("Elija (1 = Moto/ 2 = Bici)");
-                opcionl2 = leer.nextInt();
-                }while(opcionl2 != 1 || opcionl2 != 2);
-                    switch(opcionl2){
-                        case 1:
-                            
-                            break;
-                        case 2:
-                            
-                            break;
-                    }
-                break;
-            case 4:
-                
-                break;
-            default:
-                throw new AssertionError();
-        }
-        retorno = new Vehiculos(colorV, marcaV, modeloV, precioV, precioV, cantll);
-        return retorno;
-    }
-    
-    static Carros newCarros(){
+      
+    static Carros newCarros(String color, String marca, String modelo, String anio, double precio, int cantLL){
         Carros retorno;
         
         retorno = new Carros();
         return retorno;    
     }
     
-    static Camiones newCamiones(){
+    static Camiones newCamiones(String color, String marca, String modelo, String anio, double precio, int cantLL){
         Camiones retorno;
+        System.out.println("Ingrese el volumen maximo de carga del camion: ");
+        int Vcamion = leer.nextInt();
+        System.out.println("Ingrese la altura del camion: ");
+        int altura = leer.nextInt();
+        int opcionC = 0;
+        do{
+        System.out.println("El camion tiene retroexcavadora (1 = Si/ 2 = No)?: ");
+        }while(opcionC!=1||opcionC!=2);
+        boolean E = true;
+        switch (opcionC) {
+            case 1:
+                E = true;
+                break;
+             case 2:
+                E = false;
+                break;
+        }
         
         retorno = new Camiones();
         return retorno;    
     }
     
-    static Buses newBuses(){
+    static Buses newBuses(String color, String marca, String modelo, String anio, double precio, int cantLL){
         Buses retorno;
+        System.out.println("Ingrese la cantidad de pasajeros del bus: ");
+        int cantP = leer.nextInt();
         
         retorno = new Buses();
         return retorno;    
     }
     
-    static Motos newMotos(){
+    static Motos newMotos(String color, String marca, String modelo, String anio, double precio, int cantLL){
         Motos retorno;
+        System.out.println("Ingrese el desplazamiento de la moto: ");
+        String desp = leer.next();
+        int opcionM = 0;
+        do{
+        System.out.println("La moto es electrica (1 = Si/ 2= No)?: ");
+        opcionM = leer.nextInt();
+        } while (opcionM!=1||opcionM!=2);
+        boolean E = true;
+        switch (opcionM) {
+            case 1:
+                E = true;
+                break;
+            case 2:
+                E = false;
+                break;
+        }
         
-        retorno = new Motos();
+        retorno = new Motos(desp, E, color, marca, modelo, opcionM, opcionM, cantLL);
         return retorno;    
     }
     
-    static Bicis newBicis(){
+    static Bicis newBicis(String color, String marca, String modelo, String anio, double precio, int cantLL){
         Bicis retorno;
         
+        System.out.println("Ingrese la descripcion de la bicicleta: ");
+        String descripcion = leer.next();
+        System.out.println("Ingrese el radio de la rueda de la bicicleta: ");
+        int radio = leer.nextInt();
+        int opcionBici = 0;
         
+        do{
+        System.out.println("Ingrese el tipo de bicicleta (1. BMX / 2. De calle): ");
+        }while(opcionBici!=1 || opcionBici!=2);
+        String tipoBici = "";
+        switch(opcionBici){
+            case 1:
+                tipoBici = "BMX";
+                break;   
+            case 2:
+                tipoBici = "De calle";
+                break;
+        }
         retorno = new Bicis ();
         return retorno;    
     }
