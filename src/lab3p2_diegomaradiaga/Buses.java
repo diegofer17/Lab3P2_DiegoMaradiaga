@@ -8,7 +8,7 @@ public class Buses extends Vehiculos{
         super();
     }
 
-    public Buses(int pasajeros, String TipoB, String color, String marca, String modelo, int fabricacion, int precio, int cantLL) {
+    public Buses(int pasajeros, String color, String marca, String modelo, int fabricacion, int precio, int cantLL) {
         super(color, marca, modelo, fabricacion, precio, cantLL);
         this.pasajeros = pasajeros;
         if (pasajeros > 50) {
