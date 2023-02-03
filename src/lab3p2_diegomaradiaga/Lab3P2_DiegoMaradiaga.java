@@ -129,7 +129,7 @@ public class Lab3P2_DiegoMaradiaga {
                 }
                 break;
                 case 3: {
-                    if (vehiculos.isEmpty()) {
+                    if (concesionarias.isEmpty()) {
                         System.out.println(">> Vehiculos <<\n"
                                 + "\n"
                                 + "1. Agregar Vehiculos\n"
@@ -178,10 +178,12 @@ public class Lab3P2_DiegoMaradiaga {
                                         } while (opcionl2 != 1 || opcionl2 != 2);
                                         switch (opcionl2) {
                                             case 1:
-                                                newMotos(colorV, marcaV, modeloV, marcaV, precioV, cantll);
+                                                vehiculos.add(newMotos(colorV, marcaV, modeloV, marcaV, precioV, cantll));
+                                                concesionarias.get(indexCo).getVehiculos().add(newMotos(colorV, marcaV, modeloV, marcaV, precioV, cantll));
                                                 break;
                                             case 2:
-                                                newBicis(colorV, marcaV, modeloV, marcaV, precioV, cantll);
+                                                vehiculos.add(newBicis(colorV, marcaV, modeloV, marcaV, precioV, cantll));
+                                                concesionarias.get(indexCo).getVehiculos().add(newBicis(colorV, marcaV, modeloV, marcaV, precioV, cantll));
                                                 break;
                                         }//Fin switch
                                         break;
@@ -193,13 +195,16 @@ public class Lab3P2_DiegoMaradiaga {
                                         } while (opcionl4 != 1 || opcionl4 != 2 || opcionl4 != 3);
                                         switch (opcionl4) {
                                             case 1:
-                                                newCarros(colorV, marcaV, modeloV, marcaV, precioV, cantll);
+                                                vehiculos.add(newCarros(colorV, marcaV, modeloV, marcaV, precioV, cantll));
+                                                concesionarias.get(indexCo).getVehiculos().add(newCarros(colorV, marcaV, modeloV, marcaV, precioV, cantll));
                                                 break;
                                             case 2:
-                                                newCamiones(colorV, marcaV, modeloV, marcaV, precioV, cantll);
+                                                vehiculos.add(newCamiones(colorV, marcaV, modeloV, marcaV, precioV, cantll));
+                                                concesionarias.get(indexCo).getVehiculos().add(newCamiones(colorV, marcaV, modeloV, marcaV, precioV, cantll));
                                                 break;
                                             case 3:
-                                                newBuses(colorV, marcaV, modeloV, marcaV, precioV, cantll);
+                                                vehiculos.add(newBuses(colorV, marcaV, modeloV, marcaV, precioV, cantll));
+                                                concesionarias.get(indexCo).getVehiculos().add(newBuses(colorV, marcaV, modeloV, marcaV, precioV, cantll));
                                                 break;
                                         }//Fin switch
                                         break;
@@ -212,13 +217,25 @@ public class Lab3P2_DiegoMaradiaga {
                                 break;
                             case 2:
                                 if (!vehiculos.isEmpty()) {
+                                    for (Object t : concesionarias) {
+                                        System.out.println("" + concesionarias.indexOf(t) + " )" + " " + t);
+                                    }
+                                    int indexCon = 0;
+                                    
+                                    do {
+                                        System.out.print("Elija la concesionaria de la que desea modificar un vehiculo: ");
+                                        indexCon = leer.nextInt();
+                                    } while (indexCon < 0 && indexCon > concesionarias.size());
+                                    
+                                    concesionarias.get(indexCon).getVehiculos();
+                                    
                                     for (Object t : vehiculos) {
                                         System.out.println("" + vehiculos.indexOf(t) + " )" + " " + t);
                                     }
                                     int indexC = 0;
 
                                     do {
-                                        System.out.print("Ingrese el vehiculo que desea eliminar: ");
+                                        System.out.print("Ingrese el vehiculo que desea modificar: ");
                                         indexC = leer.nextInt();
                                     } while (indexC < 0 && indexC > vehiculos.size());
                                 } else {
