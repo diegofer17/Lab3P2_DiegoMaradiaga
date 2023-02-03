@@ -39,7 +39,7 @@ public class Lab3P2_DiegoMaradiaga {
                     
                     switch (opcionC){
                         case 1:
-                            newConcesionaria();
+                            concesionarias.add(newConcesionaria());
                             System.out.println("Concesionaria agregada exitosamente");
                             break;
                         case 2:
@@ -83,150 +83,175 @@ public class Lab3P2_DiegoMaradiaga {
                             System.out.println("Opcion no valida");
                             break;
                     }//Fin switch
-                }break;
+                }
+                break;
                 case 2: {
-                    System.out.println(">> Clientes <<\n"
-                            + "\n"
-                            + "1. Agregar Clientes\n"
-                            + "2. Eliminar Clientes\n"
-                            + "\n"
-                            + "Ingrese una opcion: ");
-                    int opcionC = leer.nextInt();
-                    
-                    switch (opcionC){
-                        case 1:
-                            newClientes();
-                            break;
-                        case 2:
-                            if(!clientes.isEmpty()){
-                                for (Object t : clientes) {
-                                    System.out.println(""+clientes.indexOf(t)+" )"+" "+t);
-                                }
-                                int indexC = 0;
-                                
-                                do{
-                                    System.out.print("Ingrese el cliente que desea eliminar: ");
-                                    indexC= leer.nextInt();
-                                }while(indexC<0 && indexC > clientes.size());
-                            
-                                clientes.remove(indexC);
-                                
-                            }else{
-                                System.out.println("Debe agregar una concesionaria");
-                            }//Fin else
-                            break;
-                        default:
-                            System.out.println("Opcion no valida");
-                            break;
-                    }//Fin switch
-                }break;
+                    if (!concesionarias.isEmpty()) {
+                        System.out.println(">> Clientes <<\n"
+                                + "\n"
+                                + "1. Agregar Clientes\n"
+                                + "2. Eliminar Clientes\n"
+                                + "\n"
+                                + "Ingrese una opcion: ");
+                        int opcionC = leer.nextInt();
+
+                        switch (opcionC) {
+                            case 1:
+                                clientes.add(newClientes());
+                                System.out.println("Cliente agregado exitosamente");
+                                break;
+                            case 2:
+                                if (!clientes.isEmpty()) {
+                                    for (Object t : clientes) {
+                                        System.out.println("" + clientes.indexOf(t) + " )" + " " + t);
+                                    }
+                                    int indexC = 0;
+
+                                    do {
+                                        System.out.print("Ingrese el cliente que desea eliminar: ");
+                                        indexC = leer.nextInt();
+                                    } while (indexC < 0 && indexC > clientes.size());
+
+                                    clientes.remove(indexC);
+
+                                } else {
+                                    System.out.println("Debe agregar una concesionaria");
+                                }//Fin else
+                                break;
+                            default:
+                                System.out.println("Opcion no valida");
+                                break;
+                        }//Fin switch
+                    } else {
+                        System.out.println("Debe agregar una concesionaria");
+                    }//Fin else
+
+                }
+                break;
                 case 3: {
-                    System.out.println(">> Vehiculos <<\n"
-                            + "\n"
-                            + "1. Agregar Vehiculos\n"
-                            + "2. Modificar Vehiculos\n"
-                            + "3. Eliminar Vehiculos\n"
-                            + "\n"
-                            + "Ingrese una opcion: ");
-                    int opcionC = leer.nextInt();
+                    if (vehiculos.isEmpty()) {
+                        System.out.println(">> Vehiculos <<\n"
+                                + "\n"
+                                + "1. Agregar Vehiculos\n"
+                                + "2. Modificar Vehiculos\n"
+                                + "3. Eliminar Vehiculos\n"
+                                + "\n"
+                                + "Ingrese una opcion: ");
+                        int opcionC = leer.nextInt();
 
-                    switch (opcionC) {
-                        case 1:
-                            System.out.println("Creacion del vehiculo\n"
-                                    + "\n");
-                            System.out.print("Ingrese el color del vehiculo: ");
-                            String colorV = leer.next();
-                            System.out.print("Ingrese la marca del vehiculo: ");
-                            String marcaV = leer.next();
-                            System.out.print("Ingrese el modelo del vehiculo: ");
-                            String modeloV = leer.next();
-                            System.out.println("Ingrese el anio del vehiculo: ");
-                            int anioV = leer.nextInt();
-                            System.out.println("Ingrese el precio del vehiculo: ");
-                            int precioV = leer.nextInt();
-                            int cantll = 0;
-                            do {
-                                System.out.println("Ingrese la cantidad de llantas (2 o 4): ");
-                                cantll = leer.nextInt();
-                            } while (cantll != 2 || cantll != 4);
-
-                            switch (cantll) {
-                                case 2:
-                                    int opcionl2 = 0;
-                                    do {
-                                        System.out.println("Elija (1 = Moto/ 2 = Bici)? ");
-                                        opcionl2 = leer.nextInt();
-                                    } while (opcionl2 != 1 || opcionl2 != 2);
-                                    switch (opcionl2) {
-                                        case 1:
-                                            newMotos(colorV, marcaV, modeloV, marcaV, precioV, cantll);
-                                            break;
-                                        case 2:
-                                            newBicis(colorV, marcaV, modeloV, marcaV, precioV, cantll);
-                                            break;
-                                    }//Fin switch
-                                    break;
-                                case 4:
-                                    int opcionl4 = 0;
-                                    do {
-                                        System.out.println("Elija (1 = Carro/ 2 = Camion/ 3= Bus)? ");
-                                        opcionl4 = leer.nextInt();
-                                    } while (opcionl4 != 1 || opcionl4 != 2 || opcionl4 != 3);
-                                    switch (opcionl4) {
-                                        case 1:
-                                            newCarros(colorV, marcaV, modeloV, marcaV, precioV, cantll);
-                                            break;
-                                        case 2:
-                                            newCamiones(colorV, marcaV, modeloV, marcaV, precioV, cantll);
-                                            break;
-                                        case 3:
-                                            newBuses(colorV, marcaV, modeloV, marcaV, precioV, cantll);
-                                            break;
-                                    }//Fin switch
-                                    break;
-                                default:
-
-                            }//Fin switch
-                            break;
-                        case 2:
-                            if(!vehiculos.isEmpty()){
-                                for (Object t : vehiculos) {
-                                    System.out.println(""+vehiculos.indexOf(t)+" )"+" "+t);
+                        switch (opcionC) {
+                            case 1:
+                                for (Object t : concesionarias) {
+                                    System.out.println("" + concesionarias.indexOf(t) + " )" + " " + t);
                                 }
-                                int indexC = 0;
+                                int indexCo = 0;
+
+                                do {
+                                    System.out.print("Elija la consecionaria a la que desea agregar un vehiculo: ");
+                                    indexCo = leer.nextInt();
+                                } while (indexCo < 0 && indexCo > concesionarias.size());
                                 
-                                do{
-                                    System.out.print("Ingrese el vehiculo que desea eliminar: ");
-                                    indexC= leer.nextInt();
-                                }while(indexC<0 && indexC > vehiculos.size());
+                                System.out.println("Creacion del vehiculo\n"
+                                        + "\n");
+                                System.out.print("Ingrese el color del vehiculo: ");
+                                String colorV = leer.next();
+                                System.out.print("Ingrese la marca del vehiculo: ");
+                                String marcaV = leer.next();
+                                System.out.print("Ingrese el modelo del vehiculo: ");
+                                String modeloV = leer.next();
+                                System.out.println("Ingrese el anio del vehiculo: ");
+                                int anioV = leer.nextInt();
+                                System.out.println("Ingrese el precio del vehiculo: ");
+                                int precioV = leer.nextInt();
+                                int cantll = 0;
+                                do {
+                                    System.out.println("Ingrese la cantidad de llantas (2 o 4): ");
+                                    cantll = leer.nextInt();
+                                } while (cantll != 2 || cantll != 4);
+
+                                switch (cantll) {
+                                    case 2:
+                                        int opcionl2 = 0;
+                                        do {
+                                            System.out.println("Elija (1 = Moto/ 2 = Bici)? ");
+                                            opcionl2 = leer.nextInt();
+                                        } while (opcionl2 != 1 || opcionl2 != 2);
+                                        switch (opcionl2) {
+                                            case 1:
+                                                newMotos(colorV, marcaV, modeloV, marcaV, precioV, cantll);
+                                                break;
+                                            case 2:
+                                                newBicis(colorV, marcaV, modeloV, marcaV, precioV, cantll);
+                                                break;
+                                        }//Fin switch
+                                        break;
+                                    case 4:
+                                        int opcionl4 = 0;
+                                        do {
+                                            System.out.println("Elija (1 = Carro/ 2 = Camion/ 3= Bus)? ");
+                                            opcionl4 = leer.nextInt();
+                                        } while (opcionl4 != 1 || opcionl4 != 2 || opcionl4 != 3);
+                                        switch (opcionl4) {
+                                            case 1:
+                                                newCarros(colorV, marcaV, modeloV, marcaV, precioV, cantll);
+                                                break;
+                                            case 2:
+                                                newCamiones(colorV, marcaV, modeloV, marcaV, precioV, cantll);
+                                                break;
+                                            case 3:
+                                                newBuses(colorV, marcaV, modeloV, marcaV, precioV, cantll);
+                                                break;
+                                        }//Fin switch
+                                        break;
+                                    default:
+
+                                }//Fin switch
+                                System.out.println("Vehiculo creado exitosamente");
+                                concesionarias.get(indexCo).getVehiculos().add(new Vehiculos(colorV, marcaV, modeloV, precioV, precioV, cantll));
                                 
-                                
-                            }else{
-                                System.out.println("Debe agregar una concesionaria");
-                            }//Fin else
-                            break;
-                        case 3:
-                            if(!vehiculos.isEmpty()){
-                                for (Object t : vehiculos) {
-                                    System.out.println(""+vehiculos.indexOf(t)+" )"+" "+t);
-                                }
-                                int indexC = 0;
-                                
-                                do{
-                                    System.out.print("Ingrese el vehiculo que desea eliminar: ");
-                                    indexC= leer.nextInt();
-                                }while(indexC<0 && indexC > vehiculos.size());
-                            
-                                vehiculos.remove(indexC);
-                            }else{
-                                System.out.println("Debe agregar una concesionaria");
-                            }//Fin else
-                            break;
-                        default:
-                            System.out.println("Opcion no valida");
-                            break;
-                    }//Fin switch
-                }break;
+                                break;
+                            case 2:
+                                if (!vehiculos.isEmpty()) {
+                                    for (Object t : vehiculos) {
+                                        System.out.println("" + vehiculos.indexOf(t) + " )" + " " + t);
+                                    }
+                                    int indexC = 0;
+
+                                    do {
+                                        System.out.print("Ingrese el vehiculo que desea eliminar: ");
+                                        indexC = leer.nextInt();
+                                    } while (indexC < 0 && indexC > vehiculos.size());
+                                } else {
+                                    System.out.println("Debe agregar una concesionaria");
+                                }//Fin else
+                                break;
+                            case 3:
+                                if (!vehiculos.isEmpty()) {
+                                    for (Object t : vehiculos) {
+                                        System.out.println("" + vehiculos.indexOf(t) + " )" + " " + t);
+                                    }
+                                    int indexC = 0;
+
+                                    do {
+                                        System.out.print("Ingrese el vehiculo que desea eliminar: ");
+                                        indexC = leer.nextInt();
+                                    } while (indexC < 0 && indexC > vehiculos.size());
+
+                                    vehiculos.remove(indexC);
+                                } else {
+                                    System.out.println("Debe agregar una concesionaria");
+                                }//Fin else
+                                break;
+                            default:
+                                System.out.println("Opcion no valida");
+                                break;
+                        }//Fin switch
+                    } else {
+                        System.out.println("Debe agregar una concesionaria");
+                    }//Fin else
+
+                }
+                break;
                 case 4: {
                     
                 }break;
@@ -264,7 +289,6 @@ public class Lab3P2_DiegoMaradiaga {
         retorno = new Clientes(clientes.size()+1, nombreC, saldoC);
         return retorno;
     }
-    
       
     static Carros newCarros(String color, String marca, String modelo, String anio, double precio, int cantLL){
         Carros retorno;
