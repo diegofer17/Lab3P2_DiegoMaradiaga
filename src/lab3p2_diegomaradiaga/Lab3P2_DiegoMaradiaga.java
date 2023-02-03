@@ -5,13 +5,12 @@ import java.util.Scanner;
 
 public class Lab3P2_DiegoMaradiaga {
     static Scanner leer = new Scanner(System.in);
+    static ArrayList<Concesionaria> concesionarias = new ArrayList();
+    static ArrayList<Vehiculos> vehiculos = new ArrayList();
+    static ArrayList<Clientes> clientes = new ArrayList();
+        
     public static void main(String[] args) {
         int opcion;
-        int X = 0;
-        ArrayList lista = new ArrayList();
-        ArrayList<Concesionaria> concesionarias = new ArrayList();
-        ArrayList<Vehiculos> vehiculos = new ArrayList();
-        ArrayList<Clientes> clientes = new ArrayList();
         
         do {
             System.out.println("-------------------------------------------------------");
@@ -44,31 +43,32 @@ public class Lab3P2_DiegoMaradiaga {
                             System.out.println("Concesionaria agregada exitosamente");
                             break;
                         case 2:
-                            if(concesionarias.size()==0){
+                            if(!concesionarias.isEmpty()){
                                 for (Object t : concesionarias) {
                                     System.out.println(""+concesionarias.indexOf(t)+" )"+" "+t);
                                 }
-                                System.out.print("Ingrese la consecionaria que desea modificar: ");
-                                int indexM= leer.nextInt();
                                 
+                                int indexM = 0;
                                 do{
                                     System.out.print("Ingrese la consecionaria que desea modificar: ");
                                     indexM= leer.nextInt();
                                 }while(indexM<0 && indexM > concesionarias.size());
                                 
+                                System.out.print("Solo puede modificar la direccion\n"
+                                        + "Ingrese una nueva direccion: ");
+                                String Ndireccion = leer.next();
                                 
+                                ((Concesionaria)concesionarias.get(indexM)).setDireccion(Ndireccion);
                             }else{
                                 System.out.println("Debe agregar una concesionaria");
                             }//Fin else
                             break;
                         case 3:
-                            if(concesionarias.size()==0){
+                            if(!concesionarias.isEmpty()){
                                 for (Object t : concesionarias) {
                                     System.out.println(""+concesionarias.indexOf(t)+" )"+" "+t);
                                 }
-                                System.out.print("Ingrese la consecionaria que desea eliminar: ");
-                                int indexC= leer.nextInt();
-                                
+                                int indexC = 0;
                                 do{
                                     System.out.print("Ingrese la consecionaria que desea eliminar: ");
                                     indexC= leer.nextInt();
@@ -98,12 +98,11 @@ public class Lab3P2_DiegoMaradiaga {
                             newClientes();
                             break;
                         case 2:
-                            if(clientes.size()==0){
+                            if(!clientes.isEmpty()){
                                 for (Object t : clientes) {
                                     System.out.println(""+clientes.indexOf(t)+" )"+" "+t);
                                 }
-                                System.out.print("Ingrese el cliente que desea eliminar: ");
-                                int indexC= leer.nextInt();
+                                int indexC = 0;
                                 
                                 do{
                                     System.out.print("Ingrese el cliente que desea eliminar: ");
@@ -190,19 +189,28 @@ public class Lab3P2_DiegoMaradiaga {
                             }//Fin switch
                             break;
                         case 2:
-                            if(vehiculos.size()==0){
+                            if(!vehiculos.isEmpty()){
+                                for (Object t : vehiculos) {
+                                    System.out.println(""+vehiculos.indexOf(t)+" )"+" "+t);
+                                }
+                                int indexC = 0;
+                                
+                                do{
+                                    System.out.print("Ingrese el vehiculo que desea eliminar: ");
+                                    indexC= leer.nextInt();
+                                }while(indexC<0 && indexC > vehiculos.size());
+                                
                                 
                             }else{
                                 System.out.println("Debe agregar una concesionaria");
                             }//Fin else
                             break;
                         case 3:
-                            if(vehiculos.size()==0){
+                            if(!vehiculos.isEmpty()){
                                 for (Object t : vehiculos) {
                                     System.out.println(""+vehiculos.indexOf(t)+" )"+" "+t);
                                 }
-                                System.out.print("Ingrese el vehiculo que desea eliminar: ");
-                                int indexC= leer.nextInt();
+                                int indexC = 0;
                                 
                                 do{
                                     System.out.print("Ingrese el vehiculo que desea eliminar: ");
@@ -235,14 +243,12 @@ public class Lab3P2_DiegoMaradiaga {
                 + "\n");
         System.out.print("Ingrese el nombre de la concesionaria: ");
         String nombreE = leer.next();
-        System.out.print("Ingrese el ID de la concesionaria: ");
-        int IdE = leer.nextInt();
         System.out.print("Ingrese la direccion de la concesionaria: ");
         String direccionE = leer.next();
         System.out.println("Ingrese el saldo de la concesionaria: ");
         int saldoE = leer.nextInt();
         
-        retorno = new Concesionaria(nombreE, IdE, direccionE, saldoE);
+        retorno = new Concesionaria(nombreE, concesionarias.size()+1, direccionE, saldoE);
         return retorno;
     }
     
@@ -252,12 +258,10 @@ public class Lab3P2_DiegoMaradiaga {
                 + "\n");
         System.out.print("Ingrese el nombre del cliente: ");
         String nombreC = leer.next();
-        System.out.print("Ingrese el ID del cliente: ");
-        int IdC = leer.nextInt();
         System.out.println("Ingrese el saldo del cliente: ");
         int saldoC = leer.nextInt();
         
-        retorno = new Clientes(IdC, nombreC, saldoC);
+        retorno = new Clientes(clientes.size()+1, nombreC, saldoC);
         return retorno;
     }
     
