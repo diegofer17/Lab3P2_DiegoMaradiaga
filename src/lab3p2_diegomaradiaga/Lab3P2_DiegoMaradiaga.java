@@ -10,7 +10,7 @@ public class Lab3P2_DiegoMaradiaga {
         int X = 0;
         ArrayList lista = new ArrayList();
         ArrayList<Concesionaria> concesionarias = new ArrayList();
-        ArrayList<Vehiculos> vehiuclos = new ArrayList();
+        ArrayList<Vehiculos> vehiculos = new ArrayList();
         ArrayList<Clientes> clientes = new ArrayList();
         
         do {
@@ -41,12 +41,43 @@ public class Lab3P2_DiegoMaradiaga {
                     switch (opcionC){
                         case 1:
                             newConcesionaria();
+                            System.out.println("Concesionaria agregada exitosamente");
                             break;
                         case 2:
-                            
+                            if(concesionarias.size()==0){
+                                for (Object t : concesionarias) {
+                                    System.out.println(""+concesionarias.indexOf(t)+" )"+" "+t);
+                                }
+                                System.out.print("Ingrese la consecionaria que desea modificar: ");
+                                int indexM= leer.nextInt();
+                                
+                                do{
+                                    System.out.print("Ingrese la consecionaria que desea modificar: ");
+                                    indexM= leer.nextInt();
+                                }while(indexM<0 && indexM > concesionarias.size());
+                                
+                                
+                            }else{
+                                System.out.println("Debe agregar una concesionaria");
+                            }//Fin else
                             break;
                         case 3:
+                            if(concesionarias.size()==0){
+                                for (Object t : concesionarias) {
+                                    System.out.println(""+concesionarias.indexOf(t)+" )"+" "+t);
+                                }
+                                System.out.print("Ingrese la consecionaria que desea eliminar: ");
+                                int indexC= leer.nextInt();
+                                
+                                do{
+                                    System.out.print("Ingrese la consecionaria que desea eliminar: ");
+                                    indexC= leer.nextInt();
+                                }while(indexC<0 && indexC > concesionarias.size());
                             
+                                concesionarias.remove(indexC);
+                            }else{
+                                System.out.println("Debe agregar una concesionaria");
+                            }//Fin else
                             break;
                         default:
                             System.out.println("Opcion no valida");
@@ -67,8 +98,23 @@ public class Lab3P2_DiegoMaradiaga {
                             newClientes();
                             break;
                         case 2:
-                            break;
-                        case 3:
+                            if(clientes.size()==0){
+                                for (Object t : clientes) {
+                                    System.out.println(""+clientes.indexOf(t)+" )"+" "+t);
+                                }
+                                System.out.print("Ingrese el cliente que desea eliminar: ");
+                                int indexC= leer.nextInt();
+                                
+                                do{
+                                    System.out.print("Ingrese el cliente que desea eliminar: ");
+                                    indexC= leer.nextInt();
+                                }while(indexC<0 && indexC > clientes.size());
+                            
+                                clientes.remove(indexC);
+                                
+                            }else{
+                                System.out.println("Debe agregar una concesionaria");
+                            }//Fin else
                             break;
                         default:
                             System.out.println("Opcion no valida");
@@ -142,11 +188,31 @@ public class Lab3P2_DiegoMaradiaga {
                                 default:
 
                             }//Fin switch
-                            
                             break;
                         case 2:
+                            if(vehiculos.size()==0){
+                                
+                            }else{
+                                System.out.println("Debe agregar una concesionaria");
+                            }//Fin else
                             break;
                         case 3:
+                            if(vehiculos.size()==0){
+                                for (Object t : vehiculos) {
+                                    System.out.println(""+vehiculos.indexOf(t)+" )"+" "+t);
+                                }
+                                System.out.print("Ingrese el vehiculo que desea eliminar: ");
+                                int indexC= leer.nextInt();
+                                
+                                do{
+                                    System.out.print("Ingrese el vehiculo que desea eliminar: ");
+                                    indexC= leer.nextInt();
+                                }while(indexC<0 && indexC > vehiculos.size());
+                            
+                                vehiculos.remove(indexC);
+                            }else{
+                                System.out.println("Debe agregar una concesionaria");
+                            }//Fin else
                             break;
                         default:
                             System.out.println("Opcion no valida");
