@@ -129,7 +129,7 @@ public class Lab3P2_DiegoMaradiaga {
                 }
                 break;
                 case 3: {
-                    if (concesionarias.isEmpty()) {
+                    if (!concesionarias.isEmpty()) {
                         System.out.println(">> Vehiculos <<\n"
                                 + "\n"
                                 + "1. Agregar Vehiculos\n"
@@ -167,7 +167,7 @@ public class Lab3P2_DiegoMaradiaga {
                                 do {
                                     System.out.println("Ingrese la cantidad de llantas (2 o 4): ");
                                     cantll = leer.nextInt();
-                                } while (cantll != 2 || cantll != 4);
+                                } while (cantll != 2 && cantll != 4);
 
                                 switch (cantll) {
                                     case 2:
@@ -175,15 +175,17 @@ public class Lab3P2_DiegoMaradiaga {
                                         do {
                                             System.out.println("Elija (1 = Moto/ 2 = Bici)? ");
                                             opcionl2 = leer.nextInt();
-                                        } while (opcionl2 != 1 || opcionl2 != 2);
+                                        } while (opcionl2 != 1 && opcionl2 != 2);
                                         switch (opcionl2) {
                                             case 1:
-                                                vehiculos.add(newMotos(colorV, marcaV, modeloV, marcaV, precioV, cantll));
-                                                concesionarias.get(indexCo).getVehiculos().add(newMotos(colorV, marcaV, modeloV, marcaV, precioV, cantll));
+                                                Vehiculos moto = newMotos(colorV, marcaV, modeloV, marcaV, precioV, cantll);
+                                                vehiculos.add(moto);
+                                                concesionarias.get(indexCo).getVehiculos().add(moto);
                                                 break;
                                             case 2:
-                                                vehiculos.add(newBicis(colorV, marcaV, modeloV, marcaV, precioV, cantll));
-                                                concesionarias.get(indexCo).getVehiculos().add(newBicis(colorV, marcaV, modeloV, marcaV, precioV, cantll));
+                                                Vehiculos bici = newBicis(colorV, marcaV, modeloV, marcaV, precioV, cantll);
+                                                vehiculos.add(bici);
+                                                concesionarias.get(indexCo).getVehiculos().add(bici);
                                                 break;
                                         }//Fin switch
                                         break;
@@ -192,19 +194,22 @@ public class Lab3P2_DiegoMaradiaga {
                                         do {
                                             System.out.println("Elija (1 = Carro/ 2 = Camion/ 3= Bus)? ");
                                             opcionl4 = leer.nextInt();
-                                        } while (opcionl4 != 1 || opcionl4 != 2 || opcionl4 != 3);
+                                        } while (opcionl4 != 1 && opcionl4 != 2 || opcionl4 != 3);
                                         switch (opcionl4) {
                                             case 1:
-                                                vehiculos.add(newCarros(colorV, marcaV, modeloV, marcaV, precioV, cantll));
-                                                concesionarias.get(indexCo).getVehiculos().add(newCarros(colorV, marcaV, modeloV, marcaV, precioV, cantll));
+                                                Vehiculos carro = newCarros(colorV, marcaV, modeloV, marcaV, precioV, cantll);
+                                                vehiculos.add(carro);
+                                                concesionarias.get(indexCo).getVehiculos().add(carro);
                                                 break;
                                             case 2:
-                                                vehiculos.add(newCamiones(colorV, marcaV, modeloV, marcaV, precioV, cantll));
-                                                concesionarias.get(indexCo).getVehiculos().add(newCamiones(colorV, marcaV, modeloV, marcaV, precioV, cantll));
+                                                Vehiculos camion = newCamiones(colorV, marcaV, modeloV, marcaV, precioV, cantll);
+                                                vehiculos.add(camion);
+                                                concesionarias.get(indexCo).getVehiculos().add(camion);
                                                 break;
                                             case 3:
-                                                vehiculos.add(newBuses(colorV, marcaV, modeloV, marcaV, precioV, cantll));
-                                                concesionarias.get(indexCo).getVehiculos().add(newBuses(colorV, marcaV, modeloV, marcaV, precioV, cantll));
+                                                Vehiculos bus = newBuses(colorV, marcaV, modeloV, marcaV, precioV, cantll);
+                                                vehiculos.add(bus);
+                                                concesionarias.get(indexCo).getVehiculos().add(bus);
                                                 break;
                                         }//Fin switch
                                         break;
@@ -227,23 +232,151 @@ public class Lab3P2_DiegoMaradiaga {
                                         indexCon = leer.nextInt();
                                     } while (indexCon < 0 && indexCon > concesionarias.size());
                                     
-                                    concesionarias.get(indexCon).getVehiculos();
-                                    
-                                    for (Object t : vehiculos) {
-                                        System.out.println("" + vehiculos.indexOf(t) + " )" + " " + t);
+                                    //[c1][c2][c3]
+                                    //1
+                                    /*
+                                    consesionarias.get(1).get
+                                    indexcarro = 0
+                                    sout(info del carro)
+                                    indexdelmodif = 0
+                                    swtich(indexdelmodif)
+                                    */
+                                    ArrayList<Vehiculos> carros = ((Concesionaria)concesionarias.get(indexCon)).getVehiculos();
+                                    for (Vehiculos t : carros) {
+                                        System.out.println(""+carros.indexOf(t) + " )" + " " + t);
                                     }
-                                    int indexC = 0;
-
+                                    int indexM = 0;
                                     do {
                                         System.out.print("Ingrese el vehiculo que desea modificar: ");
-                                        indexC = leer.nextInt();
-                                    } while (indexC < 0 && indexC > vehiculos.size());
+                                        indexM = leer.nextInt();
+                                    } while (indexM < 0 && indexM > vehiculos.size());
+                                    
+                                    if (concesionarias.get(indexCon).getVehiculos().get(indexM) instanceof Carros){
+                                        System.out.print("Opciones\n"
+                                                + "1. Cantidad de puertas\n"
+                                                + "2. Descripcion del motor\n"
+                                                + "3. Velocidad maxima\n"
+                                                + "Ingrese una opcion: ");
+                                        int opcionmod = leer.nextInt();
+                                        
+                                        switch(opcionmod){
+                                            case 1:
+                                                System.out.println("Ingrese la nueva cantidad de puertas: ");
+                                                int cantP = leer.nextInt();
+                                                ((Carros)vehiculos.get(indexM)).setCantPuertas(cantP);
+                                                break;
+                                            case 2:
+                                                System.out.println("Ingrese la nueva descripcion del motor: ");
+                                                String Dmotor = leer.next();
+                                                ((Carros)vehiculos.get(indexM)).setDesmotor(Dmotor);
+                                                break;
+                                            case 3:
+                                                System.out.println("Ingrese la nueva velocidad maxima : ");
+                                                int vm = leer.nextInt();
+                                                ((Carros)vehiculos.get(indexM)).setVelocidadMax(opcionmod);
+                                                break;
+                                            default:
+                                                System.out.println("Opcion no valida");
+                                                break;
+                                        }//Fin switch  
+                                    }//Fin if
+                                    if (concesionarias.get(indexCon).getVehiculos().get(indexM) instanceof Camiones){
+                                        System.out.print("Opciones\n"
+                                                + "1. Volumen de carga\n"
+                                                + "2. Altura\n"
+                                                + "Ingrese una opcion: ");
+                                        int opcionmod = leer.nextInt();
+                                        
+                                        switch(opcionmod){
+                                            case 1:
+                                                System.out.println("Ingrese el nuevo volumen de carga: ");
+                                                int Vcarga = leer.nextInt();
+                                                ((Camiones)vehiculos.get(indexM)).setVolumenC(opcionC);
+                                                break;
+                                            case 2:
+                                                System.out.println("Ingrese la nueva altura: ");
+                                                int height = leer.nextInt();
+                                                ((Camiones)vehiculos.get(indexM)).setAltura(Vcarga);
+                                                break;
+                                            default:
+                                                System.out.println("Opcion no valida");
+                                                break;
+                                        }//Fin switch  
+                                    }//Fin if           
+                                    if (concesionarias.get(indexCon).getVehiculos().get(indexM) instanceof Buses){
+                                        System.out.print("Opciones\n"
+                                                + "1. Cantidad de pasajeros\n"
+                                                + "Ingrese una opcion: ");
+                                        int opcionmod = leer.nextInt();
+                                        
+                                        switch(opcionmod){
+                                            case 1:
+                                                System.out.println("Ingrese la nueva cantidad de pasajeros: ");
+                                                int pasajeros = leer.nextInt();
+                                                ((Buses)vehiculos.get(indexM)).setPasajeros(pasajeros);
+                                                break;
+                                            default:
+                                                System.out.println("Opcion no valida");
+                                                break;
+                                        }//Fin switch  
+                                    }//Fin if    
+                                    if (concesionarias.get(indexCon).getVehiculos().get(indexM) instanceof Motos){
+                                        System.out.print("Opciones\n"
+                                                + "1. Desplazamiento\n"
+                                                + "Ingrese una opcion: ");
+                                        int opcionmod = leer.nextInt();
+                                        
+                                        switch(opcionmod){
+                                            case 1:
+                                                System.out.println("Ingrese el nuevo desplazamiento: ");
+                                                String desplazamiento = leer.next();
+                                                ((Motos)vehiculos.get(indexM)).setDesplazamiento(desplazamiento);
+                                                break;
+                                            default:
+                                                System.out.println("Opcion no valida");
+                                                break;
+                                        }//Fin switch  
+                                    }//Fin if
+                                    if (concesionarias.get(indexCon).getVehiculos().get(indexM) instanceof Bicis){
+                                        System.out.print("Opciones\n"
+                                                + "1. Descripcion\n"
+                                                + "2. Radio de la rueda\n"
+                                                + "Ingrese una opcion: ");
+                                        int opcionmod = leer.nextInt();
+                                        
+                                        switch(opcionmod){
+                                            case 1:
+                                                System.out.println("Ingrese el nuevo desplazamiento: ");
+                                                String descripcion = leer.next();
+                                                ((Bicis)vehiculos.get(indexM)).setDescripcion(descripcion);
+                                                break;
+                                            case 2:
+                                                System.out.println("Ingrese el nuevo radio de la rueda: ");
+                                                int radio = leer.nextInt();
+                                                ((Bicis)vehiculos.get(indexM)).setRadioR(radio);
+                                                break;
+                                            default:
+                                                System.out.println("Opcion no valida");
+                                                break;
+                                        }//Fin switch  
+                                    }//Fin if   
                                 } else {
                                     System.out.println("Debe agregar una concesionaria");
                                 }//Fin else
                                 break;
                             case 3:
                                 if (!vehiculos.isEmpty()) {
+                                    for (Object t : concesionarias) {
+                                        System.out.println("" + concesionarias.indexOf(t) + " )" + " " + t);
+                                    }
+                                    int indexCon = 0;
+                                    
+                                    do {
+                                        System.out.print("Elija la concesionaria de la que desea eliminar un vehiculo: ");
+                                        indexCon = leer.nextInt();
+                                    } while (indexCon < 0 && indexCon > concesionarias.size());
+                                    
+                                    
                                     for (Object t : vehiculos) {
                                         System.out.println("" + vehiculos.indexOf(t) + " )" + " " + t);
                                     }
@@ -355,7 +488,7 @@ public class Lab3P2_DiegoMaradiaga {
         do{
         System.out.println("La moto es electrica (1 = Si/ 2= No)?: ");
         opcionM = leer.nextInt();
-        } while (opcionM!=1||opcionM!=2);
+        } while (opcionM!=1&&opcionM!=2);
         boolean E = true;
         switch (opcionM) {
             case 1:
@@ -381,7 +514,7 @@ public class Lab3P2_DiegoMaradiaga {
         
         do{
         System.out.println("Ingrese el tipo de bicicleta (1. BMX / 2. De calle): ");
-        }while(opcionBici!=1 || opcionBici!=2);
+        }while(opcionBici!=1 && opcionBici!=2);
         String tipoBici = "";
         switch(opcionBici){
             case 1:
