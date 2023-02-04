@@ -162,7 +162,7 @@ public class Lab3P2_DiegoMaradiaga {
                                 System.out.println("Ingrese el anio del vehiculo: ");
                                 int anioV = leer.nextInt();
                                 System.out.println("Ingrese el precio del vehiculo: ");
-                                int precioV = leer.nextInt();
+                                double precioV = leer.nextDouble();
                                 int cantll = 0;
                                 do {
                                     System.out.println("Ingrese la cantidad de llantas (2 o 4): ");
@@ -216,7 +216,7 @@ public class Lab3P2_DiegoMaradiaga {
                                     default:
 
                                 }//Fin switch
-                                concesionarias.get(indexCo).getVehiculos().add(new Vehiculos(colorV, marcaV, modeloV, precioV, precioV, cantll));
+                                concesionarias.get(indexCo).getVehiculos().add(new Vehiculos(colorV, marcaV, modeloV, anioV, precioV, cantll));
                                 System.out.println("Vehiculo creado exitosamente");
                                 break;
                             case 2:
@@ -393,6 +393,74 @@ public class Lab3P2_DiegoMaradiaga {
                 }
                 break;
                 case 4: {
+                    if(!concesionarias.isEmpty()&&clientes.isEmpty()){
+                        System.out.println("1. Comprar\n"
+                            + "2. Vender\n"
+                            + "Que desea hacer? ");
+                    int opcionCv = leer.nextInt();
+                    
+                    switch (opcionCv){
+                        case 1:
+                            for (Object t : concesionarias) {
+                                        System.out.println("" + concesionarias.indexOf(t) + " )" + " " + t);
+                                    }
+                                    int indexCon = 0;
+                                    
+                                    do {
+                                        System.out.print("Elija la concesionaria de la que desea comprar un vehiculo: ");
+                                        indexCon = leer.nextInt();
+                                    } while (indexCon < 0 && indexCon > concesionarias.size());
+                                    
+                                    ArrayList<Vehiculos> carros = ((Concesionaria)concesionarias.get(indexCon)).getVehiculos();
+                                    for (Vehiculos t : carros) {
+                                        System.out.println(""+carros.indexOf(t) + " )" + " " + t);
+                                    }
+                                    int indexM = 0;
+                                    do {
+                                        System.out.print("Ingrese el vehiculo que desea comprar: ");
+                                        indexM = leer.nextInt();
+                                    } while (indexM < 0 && indexM > vehiculos.size());
+                                    
+                                    double precioCarro = ((Vehiculos)vehiculos.get(indexM)).getPrecio();
+                                    
+                                    double impuesto = precioCarro*0.05;
+                                    double precioFcarro = precioCarro+impuesto;
+                                    double saldoCliente = ((Clientes)clientes.get(indexM)).getSaldo();
+                                    ((Clientes)clientes.get(indexM)).setSaldo(saldoCliente-precioFcarro);
+                                    
+                                    double saldoConce = ((Concesionaria)concesionarias.get(indexM)).getSaldo();
+                                    ((Concesionaria)concesionarias.get(indexM)).setSaldo(saldoConce+precioFcarro);
+                                    Vehiculos v = concesionarias.get(indexCon).getVehiculos().get(indexM);
+                                    clientes.get(indexM).getVehiculos().add(v);
+                                    
+                            break;
+                            
+                        case 2:
+                            int indexClien = 0;
+                            for (Object t : clientes) {
+                                System.out.println("" + clientes.indexOf(t) + " )" + " " + t);
+                            }
+                            System.out.println("Escoja el cliente: ");
+                            indexClien = leer.nextInt();
+                            
+                            int indexLi = 0;
+                            for (Object t : clientes.get(indexClien).getVehiculos()) {
+                                System.out.println("" + clientes.indexOf(t) + " )" + " " + t);
+                            }
+                            System.out.println("Escoja el carro: ");
+                            indexLi = leer.nextInt();
+                            
+                            
+                            break;
+                           
+                        default:
+                            System.out.println("Opcion no valida");
+                            break;
+                    }//Fin switch
+                    }else{
+                        System.out.println("Debe agregar una concesionaria");
+                    }//Fin else
+                    
                     
                 }break;
                 default:

@@ -7,13 +7,13 @@ public class Vehiculos {
     protected String marca;
     protected String modelo;
     protected int fabricacion;
-    protected int precio;
+    protected double precio;
     protected int cantLL;
 
     public Vehiculos() {
     }
 
-    public Vehiculos(String color, String marca, String modelo, int fabricacion, int precio, int cantLL) {
+    public Vehiculos(String color, String marca, String modelo, int fabricacion, double precio, int cantLL) {
         this.color = color;
         this.marca = marca;
         this.modelo = modelo;
@@ -54,11 +54,11 @@ public class Vehiculos {
         this.fabricacion = fabricacion;
     }
 
-    public int getPrecio() {
+    public double getPrecio() {
         return precio;
     }
 
-    public void setPrecio(int precio) {
+    public void setPrecio(double precio) {
         this.precio = precio;
     }
 
