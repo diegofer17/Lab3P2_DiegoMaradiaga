@@ -20,7 +20,7 @@ public class Lab3P2_DiegoMaradiaga {
             System.out.println("2. CRUD Clientes      ");
             System.out.println("3. CRUD Vehiculos     ");
             System.out.println("4. Compra/Venta de vehiculos por parte de un cliente ");
-            System.out.println("");
+            System.out.println("5. Salir");
             System.out.print("Ingrese su opcion: ");
             opcion = leer.nextInt();
             System.out.println("");
@@ -138,7 +138,7 @@ public class Lab3P2_DiegoMaradiaga {
                                 + "\n"
                                 + "Ingrese una opcion: ");
                         int opcionC = leer.nextInt();
-
+                        
                         switch (opcionC) {
                             case 1:
                                 for (Object t : concesionarias) {
@@ -194,7 +194,7 @@ public class Lab3P2_DiegoMaradiaga {
                                         do {
                                             System.out.println("Elija (1 = Carro/ 2 = Camion/ 3= Bus)? ");
                                             opcionl4 = leer.nextInt();
-                                        } while (opcionl4 != 1 && opcionl4 != 2 || opcionl4 != 3);
+                                        } while (opcionl4 != 1 && opcionl4 != 2 && opcionl4 != 3);
                                         switch (opcionl4) {
                                             case 1:
                                                 Vehiculos carro = newCarros(colorV, marcaV, modeloV, marcaV, precioV, cantll);
@@ -216,9 +216,8 @@ public class Lab3P2_DiegoMaradiaga {
                                     default:
 
                                 }//Fin switch
-                                System.out.println("Vehiculo creado exitosamente");
                                 concesionarias.get(indexCo).getVehiculos().add(new Vehiculos(colorV, marcaV, modeloV, precioV, precioV, cantll));
-                                
+                                System.out.println("Vehiculo creado exitosamente");
                                 break;
                             case 2:
                                 if (!vehiculos.isEmpty()) {
@@ -232,15 +231,6 @@ public class Lab3P2_DiegoMaradiaga {
                                         indexCon = leer.nextInt();
                                     } while (indexCon < 0 && indexCon > concesionarias.size());
                                     
-                                    //[c1][c2][c3]
-                                    //1
-                                    /*
-                                    consesionarias.get(1).get
-                                    indexcarro = 0
-                                    sout(info del carro)
-                                    indexdelmodif = 0
-                                    swtich(indexdelmodif)
-                                    */
                                     ArrayList<Vehiculos> carros = ((Concesionaria)concesionarias.get(indexCon)).getVehiculos();
                                     for (Vehiculos t : carros) {
                                         System.out.println(""+carros.indexOf(t) + " )" + " " + t);
@@ -296,7 +286,7 @@ public class Lab3P2_DiegoMaradiaga {
                                             case 2:
                                                 System.out.println("Ingrese la nueva altura: ");
                                                 int height = leer.nextInt();
-                                                ((Camiones)vehiculos.get(indexM)).setAltura(Vcarga);
+                                                ((Camiones)vehiculos.get(indexM)).setAltura(height);
                                                 break;
                                             default:
                                                 System.out.println("Opcion no valida");
@@ -409,7 +399,7 @@ public class Lab3P2_DiegoMaradiaga {
                    System.out.println("Opcion no valida");
                    break;
             }//Fin switch
-        }while(opcion!=3);
+        }while(opcion!=5);
     }//Fin main
     
     static Concesionaria newConcesionaria(){
@@ -453,10 +443,9 @@ public class Lab3P2_DiegoMaradiaga {
         int Vcamion = leer.nextInt();
         System.out.println("Ingrese la altura del camion: ");
         int altura = leer.nextInt();
-        int opcionC = 0;
-        do{
         System.out.println("El camion tiene retroexcavadora (1 = Si/ 2 = No)?: ");
-        }while(opcionC!=1||opcionC!=2);
+        int opcionC = leer.nextInt();
+        
         boolean E = true;
         switch (opcionC) {
             case 1:
@@ -484,11 +473,8 @@ public class Lab3P2_DiegoMaradiaga {
         Motos retorno;
         System.out.println("Ingrese el desplazamiento de la moto: ");
         String desp = leer.next();
-        int opcionM = 0;
-        do{
         System.out.println("La moto es electrica (1 = Si/ 2= No)?: ");
-        opcionM = leer.nextInt();
-        } while (opcionM!=1&&opcionM!=2);
+        int opcionM = leer.nextInt();
         boolean E = true;
         switch (opcionM) {
             case 1:
@@ -510,11 +496,9 @@ public class Lab3P2_DiegoMaradiaga {
         String descripcion = leer.next();
         System.out.println("Ingrese el radio de la rueda de la bicicleta: ");
         int radio = leer.nextInt();
-        int opcionBici = 0;
-        
-        do{
         System.out.println("Ingrese el tipo de bicicleta (1. BMX / 2. De calle): ");
-        }while(opcionBici!=1 && opcionBici!=2);
+        int opcionBici = leer.nextInt();
+        
         String tipoBici = "";
         switch(opcionBici){
             case 1:
