@@ -450,6 +450,14 @@ public class Lab3P2_DiegoMaradiaga {
                             System.out.println("Escoja el carro: ");
                             indexLi = leer.nextInt();
                             
+                            double precioCarr = ((Vehiculos)vehiculos.get(indexLi)).getPrecio();
+                            double saldoClient = ((Clientes)clientes.get(indexLi)).getSaldo();
+                            ((Clientes)clientes.get(indexLi)).setSaldo(saldoClient+precioCarr);
+                            
+                            double saldoConc = ((Concesionaria)concesionarias.get(indexLi)).getSaldo();
+                            ((Concesionaria)concesionarias.get(indexLi)).setSaldo(saldoConc-precioCarr);
+                            Vehiculos vo = clientes.get(indexClien).getVehiculos().get(indexLi);
+                            concesionarias.get(indexLi).getVehiculos().add(vo);
                             
                             break;
                            
